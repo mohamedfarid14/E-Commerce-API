@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Checkout </title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <section>
+       <div class="product">
+        <img
+          src="https://i.postimg.cc/zf6WBZKC/arrow.png"
+          alt="Checkout Cart"
+        />
+        <div class="description">
+          
+          <h3>
+            Happy Shopping , We Hope To See You Again
+          </h3>
+          
+        </div>
+      
+      </div>
+        
+      <button type="button" id="checkout-button">Checkout</button>
+    </section>
+  </body>
+  <script type="text/javascript">
+
+  var stripe = Stripe("pk_test_51IsbfoDY4l0X6lSAjS6TLQGLMtVbLQSkAwwXCYtPXlBiLrl9HPi0d0QaoF4FNaQSgePQBxNX553cS42f1pReqzDd00rsjF4iD4");
+    var checkoutButton = document.getElementById("checkout-button");
+
+    checkoutButton.addEventListener("click", function () {
+      fetch("/create-checkout-session/60a96729a48d832cccbd2f72", {
+        method: "POST",
+        headers: {
+        Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGE4OTdmNzBiMzFmYTFlYjBhOTkzNDMiLCJpYXQiOjE2MjE2NjE2ODd9.QkWaEmViBz_B2tX8MIeKknCzJbIZp38km2h5XsEiZFk'
+     }
+      })
+        .then(function (response) {
+           
+          return response.json();
+        })
+        .then(function (session) {
+          return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function (result) {
+          
+          if (result.error) {
+            alert(result.error.message);
+          }
+        })
+        .catch(function (error) {
+          console.error("Error:", error);
+        });
+    });
+  </script>
+</html>

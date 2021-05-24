@@ -20,7 +20,6 @@ const product = new Product(req.body);
     
         res.json({
  
-            request:"add product",
             status:"success",
             product:{
 
@@ -35,6 +34,7 @@ const product = new Product(req.body);
     
     } catch(error) {
 
+        console.log(error.message)
      res.status(500).json({
 
         error : ' there is something wrong'

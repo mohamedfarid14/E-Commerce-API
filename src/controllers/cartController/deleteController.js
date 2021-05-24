@@ -88,7 +88,7 @@ exports.deleteItem = async (req,res) => {
 
             await Cart.findOneAndUpdate({owner:id}, { $set: { Products: allproducts } });
 
-            return  res.status(200).json({ allproducts });
+            return  res.status(200).json({ message:" Your Product Successfully deleted " });
     
         } else {
     

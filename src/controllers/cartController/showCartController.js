@@ -1,5 +1,4 @@
 const Cart = require('../../models/cartModel');
-//const Product= require('../../models/productModel');
 
 exports.ShowCart = async (req,res)=>{
 
@@ -11,26 +10,35 @@ try {
  
 if (UserCart){
 
-const Cart = await UserCart.populate('Products.ProductID').execPopulate();
+//const Cart = await UserCart.populate('Products.ProductID').execPopulate();
 
-const allproducts = Cart.Products.map((productObj)=>{
+const allproducts = UserCart.Products.map((productObj)=>{
 
 const productdetails = {};
 
  productdetails.product = productObj.ProductID ;
- productdetails.totalpriceproducts = productObj.Totalpriceproducts ;
+ productdetails.totalpriceproduct = productObj.Totalpriceproduct;
  productdetails.quantity = productObj.quantity ;
+ 
 
  return productdetails
 
 
 });
 
-res.status(201).json({
+let totalprice = 0 
 
- allproducts
+for (let i = 0 ; i<allproducts.length;i++){
 
-})
+totalprice+=allproducts[i].totalpriceproduct;
+
+}
+
+UserCart.Totalprice = totalprice;
+
+await UserCart.save();
+
+res.status(201).json({UserCart})
 
 
  } else {
@@ -38,6 +46,7 @@ res.status(201).json({
     return res.status(201).json({
 
       message:" No items in Cart to Show "
+      
     })
 
  }
@@ -45,6 +54,7 @@ res.status(201).json({
 
 } catch (error) {
     
+   console.log(error.message)
 
 res.status(500).json({
    error : ' something went wrong '

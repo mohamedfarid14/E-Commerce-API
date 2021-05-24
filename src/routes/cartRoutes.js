@@ -4,17 +4,18 @@ const addtoCartController = require('../controllers/cartController/addtoCartCont
 const GetCartController = require('../controllers/cartController/showCartController');
 const deleteController = require('../controllers/cartController/deleteController');
 
-
 const router = new express.Router;
 
 
-router.post('/addorder/:id',[AuthController.Auth,AuthController.restictTo('user')],addtoCartController.addproduct);
+router.post('/addorder/:id',[AuthController.Auth,AuthController.restictTo('admin','user')],addtoCartController.addproduct);
 
-router.get('/showcart',[AuthController.Auth,AuthController.restictTo('user')],GetCartController.ShowCart);
+router.get('/showcart',[AuthController.Auth,AuthController.restictTo('admin','user')],GetCartController.ShowCart);
 
-router.delete('/removeitem/all',[AuthController.Auth,AuthController.restictTo('user')],deleteController.deleteAll);
+router.delete('/removeitem/all',[AuthController.Auth,AuthController.restictTo('admin','user')],deleteController.deleteAll);
 
-router.delete('/removeitem/:id',[AuthController.Auth,AuthController.restictTo('user')],deleteController.deleteItem);
+router.delete('/removeitem/:id',[AuthController.Auth,AuthController.restictTo('admin','user')],deleteController.deleteItem);
+
+
 
 
 module.exports= router;

@@ -49,37 +49,50 @@ exports.addproduct = async (req,res)=>{
         });
 
          }
-
+            
          // add new item to cart 
         const product = {
-
+          
+           Product: foundproduct,
            ProductID:foundproduct._id,
            quantity,
-           Totalpriceproducts: foundproduct.price*quantity 
+           Totalpriceproduct:foundproduct.price*quantity 
 
            };
+        
+           let totalprice = 0 
+
+           for (let i = 0 ; i<cart.Products.length;i++){
+           
+           totalprice+=cart.Products[i].Totalpriceproduct;
+           
+           }
+
+          cart.Totalprice = totalprice;
+
           cart.owner = req.user._id;
+
           cart.Products.push(product);
 
           cart = await cart.save();
             
         return res.status(201).json({
 
-          request:" add item to cart ",
-          status :" successfully added to Cart "
+         message :" Successfully added to Cart "
 
         });
 
         } else {
   
       const newCart = await Cart.create({owner});
-    
-    
+  
         return res.status(201).send(newCart);
 
         }
 
       } catch (error) {
+
+        console.log(error.message)
 
         res.status(500).send("Something went wrong");
 

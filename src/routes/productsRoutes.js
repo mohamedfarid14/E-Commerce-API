@@ -4,9 +4,9 @@ const AddProductController = require('../controllers/productsController/Addprodu
 const RemoveProductController = require('../controllers/productsController/RemoveProductController');
 const GetproductController = require('../controllers/productsController/GetproductsController')
 const UpdateProductController = require('../controllers/productsController/updateproductController')
+const upload = require('../middleware/imagesupload') ;
+const ProductImgController = require('../controllers/productsController/ProductImgController')
 const router = new express.Router;
-
-
 
 
 router.post('/addproduct',[AuthController.Auth,AuthController.restictTo('admin')],AddProductController.AddProducts);
@@ -21,7 +21,7 @@ router.get('/products/allproducts',[AuthController.Auth,AuthController.restictTo
 
 router.patch('/products/update/:id',[AuthController.Auth,AuthController.restictTo('admin')],UpdateProductController.updateProduct);
 
-
+router.post('/product/image/uplaod/:id',[AuthController.Auth,AuthController.restictTo('admin'),upload.single('img')],ProductImgController.uploadImage);
 
 
 module.exports=router;

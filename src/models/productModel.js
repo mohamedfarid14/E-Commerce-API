@@ -30,8 +30,13 @@ type:Number,
 required:true,
 default:1
 
-}
+},
 
+img :{
+
+    type:Buffer,
+
+}
 
 
 });

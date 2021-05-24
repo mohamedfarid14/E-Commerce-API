@@ -88,7 +88,7 @@ UserSchema.methods.generateAuthToken = async function(){
 
   // {this} point to every user instance from the model 
 
-  const token = jwt.sign({_id:this._id.toString()},'jwtsignature');
+  const token = jwt.sign({_id:this._id.toString()},process.env.JWT_SECRET);
 
   this.tokens = this.tokens.concat({token}); 
   
