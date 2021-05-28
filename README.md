@@ -26,5 +26,9 @@ STRIPE_SECRET_KEY=your publishable key (you can get it by signup in stripe.com t
 PORT=3000
 JWT_SECRET=jwtsignature
 ```
+```
+run command 
+node src/server.js
 
+```
 
