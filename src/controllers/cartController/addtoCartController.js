@@ -21,7 +21,7 @@ exports.addproduct = async (req,res)=>{
       
               return res.status(404).json({
       
-                  error : ' product not found '
+                message : " Product Not Found "
               });
           
           };
@@ -60,7 +60,7 @@ exports.addproduct = async (req,res)=>{
 
            };
         
-           let totalprice = 0 
+           let totalprice = product.Totalpriceproduct
 
            for (let i = 0 ; i<cart.Products.length;i++){
            
@@ -91,8 +91,6 @@ exports.addproduct = async (req,res)=>{
         }
 
       } catch (error) {
-
-        console.log(error.message)
 
         res.status(500).send("Something went wrong");
 

@@ -11,14 +11,9 @@ app.use(cors())
 const port = process.env.PORT || 3000 ;
 app.use(express.json());
 
-
-app.use(express.static(__dirname + '/paymentview'));
-
-
 app.use(cartRoutes);
 app.use(productsRoutes);
 app.use(userRoutes);
-
 
 app.listen(port,()=>{
 

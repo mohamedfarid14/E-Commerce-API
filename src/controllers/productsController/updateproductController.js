@@ -32,11 +32,7 @@ try {
     await product.save();
 
     res.status(202).json({
-        
-        request : ' update product ',
-        status:'success',
         product 
-    
     
     });  
 

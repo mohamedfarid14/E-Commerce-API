@@ -20,10 +20,11 @@ const product = new Product(req.body);
     
         res.json({
  
-            status:"success",
+            message:"successfully added product ",
             product:{
 
-                ...product.toObject()
+            ...product.toObject()
+
 
             }
             
@@ -37,7 +38,7 @@ const product = new Product(req.body);
         console.log(error.message)
      res.status(500).json({
 
-        error : ' there is something wrong'
+        error : ' Something Went Wrong '
      });
 
     }

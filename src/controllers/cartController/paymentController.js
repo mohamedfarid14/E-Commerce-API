@@ -46,6 +46,7 @@ exports.checkout = async (req,res)=>{
         cancel_url: `${DOMAIN}/cancel.html`,
       });
     
+      console.log(session)
       res.json({ id: session.id });
 
 
@@ -54,7 +55,7 @@ exports.checkout = async (req,res)=>{
 
 res.status(500).json({
 
-    error : " Something went wrong"
+    error : " Something Went Wrong"
 })
 
    }

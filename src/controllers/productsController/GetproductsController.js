@@ -21,8 +21,6 @@ exports.getProduct = async (req,res)=>{
       
         res.status(202).json({
     
-            request: " get a specific product ",
-            status: "Success",
             Product: targetProduct   
         });
     
@@ -49,8 +47,6 @@ exports.getallProduct = async (req,res)=>{
   
 
       res.status(202).json({
-  
-          request: " get all products ",
           Products 
       });
   

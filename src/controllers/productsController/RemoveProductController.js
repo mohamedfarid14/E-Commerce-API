@@ -13,16 +13,14 @@ try {
 
     return res.status(404).json({
 
-        error : 'product not found'
+        error : 'Product Not Found'
 
     });
 
   }
     res.status(202).json({
 
-        request: "Delete a product",
-        status: "Success"
-
+       message:"Product Successfully Removed "
     });
 
 } catch (error) {
@@ -48,15 +46,14 @@ try {
 
      return res.status(404).json({
 
-      error:' no products to delete '
+      error:" There is No Products To Delete "
     });
 
    };
 
    res.status(202).json({
 
-    request: "Delete all products ",
-    status: "Success"
+  message:" All Products Successfully Removed "
 
 });
 
