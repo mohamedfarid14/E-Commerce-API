@@ -2,7 +2,7 @@
 E-commerce RESTful API project made with Express and Mongodb using MVC architecture
 # Deploy 
 heroku link : https://ff-ecommerce-api.herokuapp.com/
-# Documentaion 
+# documentation
 API documentation can be found here [Docs]( https://documenter.getpostman.com/view/15994946/TzXzCc5U)
 # Installation
 To running the api on your local machine
